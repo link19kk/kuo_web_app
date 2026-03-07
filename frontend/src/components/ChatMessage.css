@@ -1,0 +1,54 @@
+.msg {
+  margin-bottom: 24px;
+  animation: slideIn 0.25s ease both;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.msg__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.msg__role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.msg--user  .msg__role { color: var(--green);  text-shadow: 0 0 10px var(--green); }
+.msg--ai    .msg__role { color: var(--blue);   text-shadow: 0 0 10px var(--blue); }
+
+.msg__separator {
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.msg__time {
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.msg__body {
+  padding-left: 12px;
+  border-left: 2px solid;
+  margin-left: 2px;
+}
+
+.msg--user .msg__body { border-color: var(--green-dim); }
+.msg--ai   .msg__body { border-color: var(--blue-dim); }
+
+.msg__content {
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

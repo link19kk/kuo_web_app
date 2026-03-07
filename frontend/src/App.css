@@ -1,0 +1,317 @@
+/* ═══════════════════════════════════════
+   TERMINAL SHELL
+═══════════════════════════════════════ */
+
+.terminal {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--bg);
+  border: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* Layered glow */
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 255, 136, 0.04),
+    inset 0 0 30px rgba(0, 255, 136, 0.06),
+    inset 0 0 80px rgba(0, 255, 136, 0.03);
+}
+
+/* ── Scanline overlay ── */
+.terminal__scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 20;
+  border-radius: inherit;
+}
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+
+.terminal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.terminal__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal__title-bracket {
+  color: var(--green-dim);
+  font-size: 14px;
+}
+
+.terminal__title-text {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px rgba(0, 255, 136, 0.7);
+}
+
+.terminal__title-version {
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.terminal__controls {
+  display: flex;
+  gap: 8px;
+}
+
+.ctrl {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.ctrl:hover          { filter: brightness(1.3); transform: scale(1.1); }
+.ctrl--red           { background: #ff3b30; box-shadow: 0 0 6px #ff3b30; }
+.ctrl--yellow        { background: #ffcc00; box-shadow: 0 0 6px #ffcc00; }
+.ctrl--green         { background: #00ff88; box-shadow: 0 0 6px #00ff88; }
+
+/* ═══════════════════════════════════════
+   STATUS BAR
+═══════════════════════════════════════ */
+
+.terminal__statusbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 16px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: statusPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.status-text {
+  color: var(--text-dim);
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.status-text--error { color: var(--red); text-shadow: 0 0 6px var(--red); }
+
+.status-sep {
+  color: var(--border-bright);
+  font-size: 11px;
+}
+
+.status-spacer { flex: 1; }
+
+.status-btn {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--text-dim);
+  font-family: var(--font);
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  border-radius: 2px;
+}
+
+.status-btn:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+/* ═══════════════════════════════════════
+   BODY
+═══════════════════════════════════════ */
+
+.terminal__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 24px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Boot sequence ── */
+.boot__line {
+  color: var(--green-dim);
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  animation: bootFade 0.4s ease both;
+}
+
+.boot__prompt {
+  color: var(--green);
+  opacity: 0.6;
+}
+
+@keyframes bootFade {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.boot__divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--border-bright), transparent);
+  margin: 20px 0 24px;
+  animation: bootFade 0.4s 0.2s ease both;
+}
+
+/* ═══════════════════════════════════════
+   INPUT FOOTER
+═══════════════════════════════════════ */
+
+.terminal__footer {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 14px 20px;
+  background: var(--bg-input);
+  border-top: 1px solid var(--border-bright);
+  flex-shrink: 0;
+}
+
+.terminal__prompt {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.prompt-arrow {
+  color: var(--green);
+  font-size: 15px;
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--green);
+  animation: promptBlink 1.1s step-start infinite;
+}
+
+@keyframes promptBlink {
+  0%, 49% { opacity: 1; }
+  50%,100% { opacity: 0.3; }
+}
+
+.terminal__input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--green);
+  font-family: var(--font);
+  font-size: 13px;
+  caret-color: var(--green);
+  letter-spacing: 0.5px;
+}
+
+.terminal__input::placeholder {
+  color: var(--text-dim);
+}
+
+.terminal__input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.terminal__send {
+  background: transparent;
+  border: 1px solid var(--green-dim);
+  color: var(--green);
+  font-family: var(--font);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 7px 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-left: 12px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, color 0.15s;
+}
+
+.terminal__send:hover:not(:disabled) {
+  background: var(--green-subtle);
+  border-color: var(--green);
+  box-shadow: 0 0 12px var(--green-glow);
+}
+
+.terminal__send:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.terminal__send--busy {
+  border-color: var(--blue-dim);
+  color: var(--blue);
+  animation: busyPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes busyPulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .terminal__header {
+    padding: 10px 12px;
+  }
+
+  .terminal__statusbar {
+    padding: 5px 12px;
+    gap: 8px;
+  }
+
+  .terminal__body {
+    padding: 16px 12px 8px;
+  }
+
+  .terminal__footer {
+    padding: 10px 12px;
+  }
+
+  .terminal__send {
+    padding: 7px 10px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+  }
+}
