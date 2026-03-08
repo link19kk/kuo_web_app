@@ -1,26 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Determine the backend URL based on environment
-const getBackendUrl = () => {
-  // In Docker, use the service name 'backend'
-  // In local development, use localhost
-  if (process.env.DOCKER_ENV === 'true') {
-    return 'http://backend:8000'
-  }
-  return 'http://localhost:8000'
-}
-
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: '0.0.0.0', // Necessary for Docker to expose the port
     port: 3000,
-    proxy: {
-      '/api': {
-        target: getBackendUrl(),
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
+    // Add this to fix the "Blocked request" error
+    allowedHosts: ['myself.likuo.cc'], 
+    
+    // We are disabling Vite's internal proxy because 
+    // Nginx handles /api traffic now.
   },
 })
