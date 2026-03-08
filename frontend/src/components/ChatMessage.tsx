@@ -37,7 +37,10 @@ export default function ChatMessage({ message }: Props) {
         <span className="msg__time">{timeStr}</span>
       </div>
       <div className="msg__body">
-        <pre className="msg__content">{message.content}</pre>
+        <div 
+          className="msg__content" 
+          dangerouslySetInnerHTML={{ __html: message.content }}
+        />
       </div>
     </div>
   )

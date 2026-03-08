@@ -1,11 +1,13 @@
 # KNOWLEDGE BASE: KUO LI
 
 ## 1. BASIC INFORMATION & CONTACT
-* **Name:** Kuo Li
+* **Name:** Kuo LI
+* **Chinese Name:** 李阔
+* **Sex:** male(Mr.)
 * **Email:** kuo.li@essec.edu
 * **LinkedIn:** www.linkedin.com/in/kuoli19
 * **Current Location:** Paris, France
-* **Profile Summary:** A highly analytical professional specializing in Financial Engineering, Artificial Intelligence (Agentic AI, RAG, GenAI), and Data Analytics. Possesses a strong dual background in pure/applied mathematics and business management. 
+* **Profile Summary:** A analytical professional specializing in Financial Engineering, Artificial Intelligence (Agentic AI, RAG, GenAI), and Data Analytics. Possesses a strong dual background in pure/applied mathematics and business management. 
 
 ## 2. PROFESSIONAL EXPERIENCE
 
@@ -66,11 +68,11 @@
 
 * **KUO_poly_bot:** An Agentic AI trading assistant built for Polymarket trading. (Available at: t.me/KUO_poly_bot). *Note: This highlights my practical experience in building and deploying autonomous AI agents.*
 
-## 6. VOLUNTEERING, ASSOCIATIONS & EXTRACURRICULARS
+## 6. VOLUNTEERING, ASSOCIATIONS & EXTRACURRICULARS HOBBIES
 
 * **Volunteering:** * Olympic Games Paris 2024 (Grand Palais): Venue Management Volunteer.
   * Beijing 2022 Olympic Winter Games (National Alpine Ski Center): Logistics and Accommodation Assistant.
-* **Associations:** * FFB (French Skydiving Federation) Member and Licensed Skydiver.
+* **Associations/Club:** * FFB (French Skydiving Federation) Member and Licensed Skydiver.
   * ESSEC Games Office Member.
   * BUAA Film Association President.
 * **Sports / Hobbies:** Surfing, Skydiving, Basketball, Table Tennis.

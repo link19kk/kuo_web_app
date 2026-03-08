@@ -28,11 +28,18 @@ def load_knowledge_base():
         print("WARNING: knowledge.md not found. Using empty knowledge base.")
         return ""
 
-KNOWLEDGE_BASE = load_knowledge_base()
+def load_core_persona():
+    """Load the core persona from soul.md file"""
+    soul_path = os.path.join(os.path.dirname(__file__), 'soul.md')
+    try:
+        with open(soul_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+        print("WARNING: soul.md not found. Using default persona.")
+        return "You are a helpful AI assistant."
 
-CORE_PERSONA = """You are the digital agent for [Your Name]. 
-Your goal is to represent me professionally. 
-Use the Knowledge Base below to answer all questions. If the answer is not in the Knowledge Base, say you don't know but offer to take a message."""
+KNOWLEDGE_BASE = load_knowledge_base()
+CORE_PERSONA = load_core_persona()
 
 DEFAULT_SYSTEM_PROMPT = CORE_PERSONA + "\n\n" + KNOWLEDGE_BASE
 
